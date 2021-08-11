@@ -93,31 +93,22 @@ export default {
       media_frame: "",
       futures_array: [
         {
-          name: "BTC",
+          name: "ADA",
           data: [],
           first_contract: 0,
           second_contract: 0,
           first_yearly_yield: 0,
           second_yearly_yield: 0,
-          img: require("../assets/btc.svg"),
+          img: require("../assets/ada.svg"),
         },
         {
-          name: "ETH",
+          name: "BCH",
           data: [],
           first_contract: 0,
           second_contract: 0,
           first_yearly_yield: 0,
           second_yearly_yield: 0,
-          img: require("../assets/eth.svg"),
-        },
-        {
-          name: "LINK",
-          data: [],
-          first_contract: 0,
-          second_contract: 0,
-          first_yearly_yield: 0,
-          second_yearly_yield: 0,
-          img: require("../assets/link.svg"),
+          img: require("../assets/bch.svg"),
         },
         {
           name: "BNB",
@@ -129,95 +120,13 @@ export default {
           img: require("../assets/bnb.svg"),
         },
         {
-          name: "TRX",
+          name: "BTC",
           data: [],
           first_contract: 0,
           second_contract: 0,
           first_yearly_yield: 0,
           second_yearly_yield: 0,
-          img: require("../assets/trx.svg"),
-        },
-        {
-          name: "DOT",
-          data: [],
-          first_contract: 0,
-          second_contract: 0,
-          first_yearly_yield: 0,
-          second_yearly_yield: 0,
-          img: require("../assets/dot.svg"),
-        },
-        {
-          name: "ADA",
-          data: [],
-          first_contract: 0,
-          second_contract: 0,
-          first_yearly_yield: 0,
-          second_yearly_yield: 0,
-          img: require("../assets/ada.svg"),
-        },
-        {
-          name: "EOS",
-          data: [],
-          first_contract: 0,
-          second_contract: 0,
-          first_yearly_yield: 0,
-          second_yearly_yield: 0,
-          img: require("../assets/eos.svg"),
-        },
-        {
-          name: "LTC",
-          data: [],
-          first_contract: 0,
-          second_contract: 0,
-          first_yearly_yield: 0,
-          second_yearly_yield: 0,
-          img: require("../assets/ltc.svg"),
-        },
-
-        {
-          name: "BCH",
-          data: [],
-          first_contract: 0,
-          second_contract: 0,
-          first_yearly_yield: 0,
-          second_yearly_yield: 0,
-          img: require("../assets/bch.svg"),
-        },
-        {
-          name: "XRP",
-          data: [],
-          first_contract: 0,
-          second_contract: 0,
-          first_yearly_yield: 0,
-          second_yearly_yield: 0,
-          img: require("../assets/xrp.svg"),
-        },
-        {
-          name: "ETC",
-          data: [],
-          first_contract: 0,
-          second_contract: 0,
-          first_yearly_yield: 0,
-          second_yearly_yield: 0,
-          img: require("../assets/etc.svg"),
-        },
-        {
-          name: "FIL",
-          data: [],
-          first_contract: 0,
-          second_contract: 0,
-          first_yearly_yield: 0,
-          second_yearly_yield: 0,
-          img: require("../assets/fil.svg"),
-        },
-        {
-          name: "EGLD",
-          data: [],
-          first_contract: 0,
-          second_contract: 0,
-          first_yearly_yield: 0,
-          second_yearly_yield: 0,
-          img: require("../assets/egld.svg"),
+          img: require("../assets/btc.svg"),
         },
         {
           name: "DOGE",
@@ -229,13 +138,76 @@ export default {
           img: require("../assets/doge.svg"),
         },
         {
-          name: "UNI",
+          name: "DOT",
           data: [],
           first_contract: 0,
           second_contract: 0,
           first_yearly_yield: 0,
           second_yearly_yield: 0,
-          img: require("../assets/uni.svg"),
+          img: require("../assets/dot.svg"),
+        },
+        {
+          name: "EGLD",
+          data: [],
+          first_contract: 0,
+          second_contract: 0,
+          first_yearly_yield: 0,
+          second_yearly_yield: 0,
+          img: require("../assets/egld.svg"),
+        },
+        {
+          name: "EOS",
+          data: [],
+          first_contract: 0,
+          second_contract: 0,
+          first_yearly_yield: 0,
+          second_yearly_yield: 0,
+          img: require("../assets/eos.svg"),
+        },
+        {
+          name: "ETC",
+          data: [],
+          first_contract: 0,
+          second_contract: 0,
+          first_yearly_yield: 0,
+          second_yearly_yield: 0,
+          img: require("../assets/etc.svg"),
+        },
+        {
+          name: "ETH",
+          data: [],
+          first_contract: 0,
+          second_contract: 0,
+          first_yearly_yield: 0,
+          second_yearly_yield: 0,
+          img: require("../assets/eth.svg"),
+        },
+        {
+          name: "FIL",
+          data: [],
+          first_contract: 0,
+          second_contract: 0,
+          first_yearly_yield: 0,
+          second_yearly_yield: 0,
+          img: require("../assets/fil.svg"),
+        },
+        {
+          name: "LINK",
+          data: [],
+          first_contract: 0,
+          second_contract: 0,
+          first_yearly_yield: 0,
+          second_yearly_yield: 0,
+          img: require("../assets/link.svg"),
+        },
+        {
+          name: "LTC",
+          data: [],
+          first_contract: 0,
+          second_contract: 0,
+          first_yearly_yield: 0,
+          second_yearly_yield: 0,
+          img: require("../assets/ltc.svg"),
         },
         {
           name: "THETA",
@@ -247,6 +219,24 @@ export default {
           img: require("../assets/theta.svg"),
         },
         {
+          name: "TRX",
+          data: [],
+          first_contract: 0,
+          second_contract: 0,
+          first_yearly_yield: 0,
+          second_yearly_yield: 0,
+          img: require("../assets/trx.svg"),
+        },
+        {
+          name: "UNI",
+          data: [],
+          first_contract: 0,
+          second_contract: 0,
+          first_yearly_yield: 0,
+          second_yearly_yield: 0,
+          img: require("../assets/uni.svg"),
+        },
+        {
           name: "XLM",
           data: [],
           first_contract: 0,
@@ -254,6 +244,15 @@ export default {
           first_yearly_yield: 0,
           second_yearly_yield: 0,
           img: require("../assets/xlm.svg"),
+        },
+        {
+          name: "XRP",
+          data: [],
+          first_contract: 0,
+          second_contract: 0,
+          first_yearly_yield: 0,
+          second_yearly_yield: 0,
+          img: require("../assets/xrp.svg"),
         },
       ],
     };
@@ -276,61 +275,60 @@ export default {
         const data = await response.json();
         for (let prop in data) {
           if (data[prop]["pair"] === "BTCUSD") {
-            this.futures_array[0].data.push(data[prop]);
-          }
-          if (data[prop]["pair"] === "ETHUSD") {
-            this.futures_array[1].data.push(data[prop]);
-          }
-          if (data[prop]["pair"] === "LINKUSD") {
-            this.futures_array[2].data.push(data[prop]);
-          }
-          if (data[prop]["pair"] === "BNBUSD") {
             this.futures_array[3].data.push(data[prop]);
           }
+          if (data[prop]["pair"] === "ETHUSD") {
+            this.futures_array[9].data.push(data[prop]);
+          }
+          if (data[prop]["pair"] === "LINKUSD") {
+            this.futures_array[11].data.push(data[prop]);
+          }
+          if (data[prop]["pair"] === "BNBUSD") {
+            this.futures_array[2].data.push(data[prop]);
+          }
           if (data[prop]["pair"] === "TRXUSD") {
-            this.futures_array[4].data.push(data[prop]);
+            this.futures_array[14].data.push(data[prop]);
           }
           if (data[prop]["pair"] === "DOTUSD") {
             this.futures_array[5].data.push(data[prop]);
           }
           if (data[prop]["pair"] === "ADAUSD") {
-            this.futures_array[6].data.push(data[prop]);
+            this.futures_array[0].data.push(data[prop]);
           }
           if (data[prop]["pair"] === "EOSUSD") {
             this.futures_array[7].data.push(data[prop]);
           }
           if (data[prop]["pair"] === "LTCUSD") {
-            this.futures_array[8].data.push(data[prop]);
-          }
-          if (data[prop]["pair"] === "BCHUSD") {
-            this.futures_array[9].data.push(data[prop]);
-          }
-          if (data[prop]["pair"] === "XRPUSD") {
-            this.futures_array[10].data.push(data[prop]);
-          }
-          if (data[prop]["pair"] === "ETCUSD") {
-            this.futures_array[11].data.push(data[prop]);
-          }
-          if (data[prop]["pair"] === "FILUSD") {
             this.futures_array[12].data.push(data[prop]);
           }
+          if (data[prop]["pair"] === "BCHUSD") {
+            this.futures_array[1].data.push(data[prop]);
+          }
+          if (data[prop]["pair"] === "XRPUSD") {
+            this.futures_array[17].data.push(data[prop]);
+          }
+          if (data[prop]["pair"] === "ETCUSD") {
+            this.futures_array[8].data.push(data[prop]);
+          }
+          if (data[prop]["pair"] === "FILUSD") {
+            this.futures_array[10].data.push(data[prop]);
+          }
           if (data[prop]["pair"] === "EGLDUSD") {
-            this.futures_array[13].data.push(data[prop]);
+            this.futures_array[6].data.push(data[prop]);
           }
           if (data[prop]["pair"] === "DOGEUSD") {
-            this.futures_array[14].data.push(data[prop]);
+            this.futures_array[4].data.push(data[prop]);
           }
           if (data[prop]["pair"] === "UNIUSD") {
             this.futures_array[15].data.push(data[prop]);
           }
           if (data[prop]["pair"] === "THETAUSD") {
-            this.futures_array[16].data.push(data[prop]);
+            this.futures_array[13].data.push(data[prop]);
           }
           if (data[prop]["pair"] === "XLMUSD") {
-            this.futures_array[17].data.push(data[prop]);
+            this.futures_array[16].data.push(data[prop]);
           }
         }
-        this.futures_array.sort((a, b) => a.name - b.name);
 
         this.getDates();
         this.calculateDifferenceDay();
