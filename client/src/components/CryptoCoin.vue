@@ -48,7 +48,7 @@ div {
   display: grid;
   justify-content: center;
   align-items: center;
-  padding: 5px;
+  padding-top: 5px;
 }
 
 @media screen and (max-width: 480px) {

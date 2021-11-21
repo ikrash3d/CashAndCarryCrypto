@@ -22,15 +22,15 @@ export default {
     };
   },
   async created() {
-    setInterval(async () => {
-      const response = await fetch(this.url, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      console.log(response);
-    }, 5000);
+    // setInterval(async () => {
+    //   const response = await fetch(this.url, {
+    //     method: "GET",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //   });
+    //   console.log(response);
+    // }, 5000);
 
     this.mediaFrame = window.matchMedia(window.matchMedia("(max-width: 480px)"));
   },

@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container mb-5">
     <div class="subContainer">
       <button @click="toggleBest">+</button>
       <h1 style="text-align:center">Best Futures</h1>
@@ -37,7 +37,7 @@
       </div>
     </div>
 
-    <div class="subContainer" style="margin-top: 40px;">
+    <div class="subContainer mt-5">
       <button @click="toggleLog">+</button>
       <h1 style="text-align:center">Futures Log</h1>
       <div v-if="showLog">
