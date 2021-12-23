@@ -1,8 +1,10 @@
 <template>
-  <Header></Header>
-  <div class="row justify-content-center">
-    <div class="col-12">
-      <router-view />
+  <div>
+    <Header></Header>
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <router-view />
+      </div>
     </div>
   </div>
 </template>

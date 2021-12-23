@@ -36,6 +36,14 @@ export default {
 </script>
 
 <style scoped>
+.displayCoins {
+  width: 100%;
+  transition: 0.5s all ease-in-out;
+}
+
+.displayCoins:hover {
+  transform: scale(1.1);
+}
 .coin {
   display: grid;
   grid-template-columns: 25% 15%;
