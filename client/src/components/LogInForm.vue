@@ -7,16 +7,15 @@
         <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" />
         <label for="floatingInput">Email address</label>
       </div>
-      <div class="form-floating">
+      <div class="form-floating mt-3">
         <input type="password" class="form-control" id="floatingPassword" placeholder="Password" />
         <label for="floatingPassword">Password</label>
       </div>
       <router-link to="/tables">
-        <button class="w-100 btn btn-lg btn-primary mt-3 mb-3" type="submit">Sign in</button>
+        <button class="w-100 btn btn-lg btn-primary mt-4 mb-3" type="submit">Sign in</button>
       </router-link>
-
       <router-link to="/signup">
-        <button class="w-100 btn btn-lg btn-secondary mt-3 mb-3" type="submit">Sign up</button>
+        <button class="w-100 btn btn-lg btn-secondary mt-2 mb-3" type="submit">Sign up</button>
       </router-link>
     </div>
   </div>
