@@ -1,23 +1,50 @@
-const http = require("http");
-
+const express = require("express");
+const { connectDb, getProvinces, insertUser } = require("./connect.js");
+const cors = require("cors");
+let { people } = require("./data.js");
+const app = express();
 const port = 5000;
-console.log(`HTTP server created, listening on port ${port}...`);
-const server = http.createServer((req, res) => {
-  if (req.url === "/") {
-    res.end(`<h1> Home page</h1>
-      <a href="/about">About Page</a>
-      <br>
-      <a href='/123123'>Random path </a>
-    `);
-  } else if (req.url === "/about") {
-    res.end(`<h1>About page</h1>
-    <a href="/">Back Home</a>`);
-  } else {
-    res.end(`
-  <h1>Oops..!</h1>
-  <p>We can't seem to find your page</p>
-  <a href='/'>Go back to safety here</a>`);
+const corsOption = {
+  origin: "http://localhost:8080",
+  optionsSuccessStatus: 200,
+};
+
+app.use(express.json());
+app.options("/api/provinces", cors());
+app.options("/api/users", cors());
+
+app.get("/api/provinces", cors(corsOption), async (req, res) => {
+  let response = await getProvinces();
+
+  if (response.statusCode === 404) {
+    return res.status(404).send({ success: false, msg: "An error has occured, nothing was found" });
   }
+
+  return res.status(200).json({ success: true, data: response });
 });
 
-server.listen(port);
+app.post("/api/users", cors(corsOption), async (req, res) => {
+  console.log(req.body);
+  let user = {
+    email: req.body.userEmail,
+    password: req.body.userPassword,
+    address: req.body.userAddress,
+    city: req.body.userCity,
+    province: req.body.userProvince,
+    zip: req.body.userZip,
+  };
+  const response = await insertUser(user);
+  if (!req.body) {
+    return res.status(401).send("Please provide a username and a password");
+  }
+  return res.status(201).json({ success: true, data: user });
+});
+
+const start = async () => {
+  app.listen(port, () => {
+    console.log(`The server is now listening on port ${port}...`);
+  });
+  await connectDb();
+};
+
+start();
