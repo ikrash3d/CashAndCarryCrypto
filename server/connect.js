@@ -27,10 +27,9 @@ const insertUser = async (user) => {
       province: user.province,
       zip: user.zip,
     });
-    response = { statusCode: "201", data: data, msg: "Success" };
+    response = { statusCode: "201", data: data, msg: "User was added the database" };
   } catch (error) {
-    console.log(error);
-    response = { statusCode: "400", data: data, msg: "User was not added" };
+    response = { statusCode: "400", data: data, msg: "User was not added to the database" };
   }
   return response;
 };

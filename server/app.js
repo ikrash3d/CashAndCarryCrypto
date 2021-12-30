@@ -7,11 +7,12 @@ const port = 5000;
 const corsOption = {
   origin: "http://localhost:8080",
   optionsSuccessStatus: 200,
+  preflightContinue: false,
 };
 
 app.use(express.json());
-app.options("/api/provinces", cors());
-app.options("/api/users", cors());
+app.options("/api/provinces", cors(corsOption));
+app.options("/api/users", cors(corsOption));
 
 app.get("/api/provinces", cors(corsOption), async (req, res) => {
   let response = await getProvinces();
@@ -24,7 +25,6 @@ app.get("/api/provinces", cors(corsOption), async (req, res) => {
 });
 
 app.post("/api/users", cors(corsOption), async (req, res) => {
-  console.log(req.body);
   let user = {
     email: req.body.userEmail,
     password: req.body.userPassword,
@@ -34,10 +34,12 @@ app.post("/api/users", cors(corsOption), async (req, res) => {
     zip: req.body.userZip,
   };
   const response = await insertUser(user);
-  if (!req.body) {
-    return res.status(401).send("Please provide a username and a password");
+  statusCode = Number(response.statusCode);
+  if (statusCode !== 201) {
+    return res.status(401).send("A connection error has occured please try again later");
   }
-  return res.status(201).json({ success: true, data: user });
+  console.log(` The "${req.method}" request was successful!\n Request status code: ${statusCode} `);
+  return res.status(201).json({ success: true, data: user, msg: "Request succesful" });
 });
 
 const start = async () => {
