@@ -7,4 +7,5 @@ import "bootstrap-vue/dist/bootstrap-vue.css";
 
 const app = createApp(App);
 app.use(router);
+
 app.mount("#app");

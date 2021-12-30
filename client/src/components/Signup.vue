@@ -32,12 +32,13 @@
       </div>
 
       <div class="col-12">
-        <button @click="sendUserInfo" class="btn-lg mt-2 w-50 btn-primary">Sign in</button>
+        <button @click="sendUserInfo" class="btn-lg mt-2 w-50 btn-primary">Sign up</button>
       </div>
     </form>
   </div>
 </template>
 <script>
+import Swal from "sweetalert2";
 export default {
   data() {
     return {
@@ -50,6 +51,7 @@ export default {
       userCity: "",
       userProvince: "",
       userZip: "",
+      formAccepted: false,
     };
   },
   created() {
@@ -64,7 +66,6 @@ export default {
       });
       const content = await response.json();
       this.provinces = content.data.data;
-      console.log(this.provinces);
     },
     async sendUserInfo() {
       const newUser = JSON.stringify({
@@ -75,20 +76,55 @@ export default {
         userProvince: this.userProvince,
         userZip: this.userZip,
       });
-      try {
-        const response = await fetch(this.addUserUrl, {
-          method: "POST",
-          headers: {
-            "Content-type": "application/json",
-          },
-
-          body: newUser,
-        });
-        console.log(newUser);
-        console.log(response);
-      } catch (error) {
-        console.log(error);
-      }
+      Swal.fire({
+        title: "Are you sure?",
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonColor: "#0d6efd",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Create account!",
+      }).then(async (result) => {
+        try {
+          if (result.isConfirmed) {
+            const response = await fetch(this.addUserUrl, {
+              method: "POST",
+              headers: {
+                "Content-type": "application/json",
+              },
+              body: newUser,
+            });
+            console.log(response);
+            if (response.status === 201) {
+              Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Your account has been created",
+                confirmButtonColor: "#0d6efd",
+                time: 1500,
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  this.$router.push({ name: "Login" });
+                }
+              });
+            } else {
+              Swal.fire({
+                position: "center",
+                icon: "error",
+                title: "An issue has occured, please try again later",
+                time: 1500,
+              });
+            }
+          }
+        } catch (error) {
+          console.log(error);
+          Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "An issue has occured, please try again later",
+            time: 1500,
+          });
+        }
+      });
     },
   },
 };
