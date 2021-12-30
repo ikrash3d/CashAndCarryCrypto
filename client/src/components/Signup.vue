@@ -28,7 +28,7 @@
       </div>
       <div class="col-md-2">
         <label for="inputZip" class="form-label">Zip</label>
-        <input v-model="userZip" type="text" class="form-control" id="inputZip" />
+        <input v-model="userZip" type="text" class="form-control" id="inputZip" placeholder="K1A 0B1" />
       </div>
 
       <div class="col-12">
@@ -95,35 +95,35 @@ export default {
             });
             console.log(response);
             if (response.status === 201) {
-              Swal.fire({
-                position: "center",
-                icon: "success",
-                title: "Your account has been created",
-                confirmButtonColor: "#0d6efd",
-                time: 1500,
-              }).then((result) => {
+              this.successModal().then((result) => {
                 if (result.isConfirmed) {
                   this.$router.push({ name: "Login" });
                 }
               });
             } else {
-              Swal.fire({
-                position: "center",
-                icon: "error",
-                title: "An issue has occured, please try again later",
-                time: 1500,
-              });
+              this.errorModal();
             }
           }
         } catch (error) {
-          console.log(error);
-          Swal.fire({
-            position: "center",
-            icon: "error",
-            title: "An issue has occured, please try again later",
-            time: 1500,
-          });
+          this.errorModal();
         }
+      });
+    },
+    errorModal() {
+      return Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "An issue has occured, please try again later",
+        time: 1500,
+      });
+    },
+    successModal() {
+      return Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Your account has been created",
+        confirmButtonColor: "#0d6efd",
+        time: 1500,
       });
     },
   },
