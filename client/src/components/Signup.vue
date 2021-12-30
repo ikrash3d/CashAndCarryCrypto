@@ -51,7 +51,7 @@ export default {
       userCity: "",
       userProvince: "",
       userZip: "",
-      formAccepted: false,
+      response: "",
     };
   },
   created() {
@@ -68,35 +68,13 @@ export default {
       this.provinces = content.data.data;
     },
     async sendUserInfo() {
-      const newUser = JSON.stringify({
-        userEmail: this.userEmail,
-        userPassword: this.userPassword,
-        userAddress: this.userAddress,
-        userCity: this.userCity,
-        userProvince: this.userProvince,
-        userZip: this.userZip,
-      });
-      Swal.fire({
-        title: "Are you sure?",
-        icon: "question",
-        showCancelButton: true,
-        confirmButtonColor: "#0d6efd",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Create account!",
-      }).then(async (result) => {
+      const newUser = this.createNewUser();
+      this.confirmModal(newUser).then(async (confirmResult) => {
         try {
-          if (result.isConfirmed) {
-            const response = await fetch(this.addUserUrl, {
-              method: "POST",
-              headers: {
-                "Content-type": "application/json",
-              },
-              body: newUser,
-            });
-            console.log(response);
-            if (response.status === 201) {
-              this.successModal().then((result) => {
-                if (result.isConfirmed) {
+          if (confirmResult.isConfirmed) {
+            if (this.response.status === 201) {
+              this.successModal().then((successResult) => {
+                if (successResult.isConfirmed) {
                   this.$router.push({ name: "Login" });
                 }
               });
@@ -114,6 +92,7 @@ export default {
         position: "center",
         icon: "error",
         title: "An issue has occured, please try again later",
+        allowOutsideClick: false,
         time: 1500,
       });
     },
@@ -122,8 +101,40 @@ export default {
         position: "center",
         icon: "success",
         title: "Your account has been created",
+        allowOutsideClick: false,
         confirmButtonColor: "#0d6efd",
         time: 1500,
+      });
+    },
+    confirmModal(newUser) {
+      return Swal.fire({
+        title: "Are you sure?",
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonColor: "#0d6efd",
+        cancelButtonColor: "#d33",
+        showLoaderOnConfirm: true,
+        confirmButtonText: "Create account!",
+        allowOutsideClick: false,
+        preConfirm: async () => {
+          this.response = await fetch(this.addUserUrl, {
+            method: "POST",
+            headers: {
+              "Content-type": "application/json",
+            },
+            body: newUser,
+          });
+        },
+      });
+    },
+    createNewUser() {
+      return JSON.stringify({
+        userEmail: this.userEmail,
+        userPassword: this.userPassword,
+        userAddress: this.userAddress,
+        userCity: this.userCity,
+        userProvince: this.userProvince,
+        userZip: this.userZip,
       });
     },
   },
