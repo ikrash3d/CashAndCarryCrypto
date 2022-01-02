@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="row justify-content-center">
     <Header></Header>
     <div class="row justify-content-center">
       <div class="col-12">
@@ -20,20 +20,9 @@ export default {
   data() {
     return {
       mediaFrame: "",
-      url: "https://ftx.com/api/futures",
     };
   },
   async created() {
-    // setInterval(async () => {
-    //   const response = await fetch(this.url, {
-    //     method: "GET",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //   });
-    //   console.log(response);
-    // }, 5000);
-
     this.mediaFrame = window.matchMedia(window.matchMedia("(max-width: 480px)"));
   },
 };
