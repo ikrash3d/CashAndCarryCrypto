@@ -162,7 +162,7 @@ export default {
       return Swal.fire({
         position: "center",
         icon: "error",
-        title: `This username: "${this.userName}" is already being used.\n\n Please chose an other one.`,
+        title: `The username: "${this.userName}" is already being used.\n\n Please chose an other one.`,
         allowOutsideClick: false,
         time: 1500,
       });

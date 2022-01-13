@@ -65,7 +65,6 @@
         </crypto-coin>
       </div>
     </div>
-    <button @click="sendInfo()">send credentials</button>
   </div>
 </template>
 

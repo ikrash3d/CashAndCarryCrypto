@@ -30,18 +30,22 @@ app.get("/api/provinces", cors(), async (req, res) => {
 
 app.post("/api/login", cors(), async (req, res) => {
   let user = { username: req.body.username, password: req.body.password };
-  const response = await fetchDBData();
-  const statusCode = Number(response.statusCode);
-  const userCredentials = await findUser(user.username);
-  console.log(user.password);
-  console.log(userCredentials.data.username);
-  const authorization = validateUser(userCredentials.data.username, user.password);
-  console.log(authorization);
-  if (statusCode !== 201) {
-    return res.status(401).send("A connection error has occured please try again later");
-  }
+  try {
+    const userCredentials = await findUser(user.username);
+    if (userCredentials.data.username === undefined) {
+      return res.status(401).json({ success: false, msg: "User not found", data: "", statusCode: 401 });
+    }
 
-  return res.status(201).json({ success: true, msg: "Request successful", data: response.data });
+    const authorization = validateUser(userCredentials.data.username, user.password);
+    if (authorization.statusCode !== 202) {
+      return res.status(401).json({ success: false, msg: "Wrong password", data: "", statusCode: 401 });
+    }
+
+    return res.status(201).json({ success: true, msg: "Access granted", data: user, statusCode: 202 });
+  } catch (error) {
+    console.log(error);
+    res.status(404).send("A connection error has occured please try again later");
+  }
 });
 
 app.post("/api/users", cors(), async (req, res) => {

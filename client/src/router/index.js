@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import LogInForm from "../components/LogInForm.vue";
 import CryptoCalc from "../components/CryptoCalc.vue";
 import Signup from "../components/Signup.vue";
-import TestForm from "../components/TestForm.vue";
+
 const routes = [
   {
     path: "/",
@@ -11,18 +11,13 @@ const routes = [
   },
   {
     path: "/tables",
-    name: "CryptoCalc",
+    name: "Tables",
     component: CryptoCalc,
   },
   {
     path: "/signup",
     name: "Singup",
     component: Signup,
-  },
-  {
-    path: "/testform",
-    name: "TestForm",
-    component: TestForm,
   },
 ];
 const router = createRouter({

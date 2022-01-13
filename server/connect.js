@@ -9,7 +9,7 @@ const connectDb = async () => {
     const database = client.db("CashAndCarryCrypto");
     console.log(`Connected to the DB...`);
   } catch (error) {
-    console.log(error);
+    console.log(`Unable to connect to the DB...`);
   }
 };
 
@@ -91,7 +91,7 @@ const findUser = async (username) => {
 
 const validateUser = (userPassword, reqPassword) => {
   let response = { statusCode: "", data: "", msg: "" };
-  console.log(`connect userpassword: ${userPassword}, connect reqpassword: ${reqPassword}`);
+
   if (userPassword === reqPassword) {
     return (response = {
       statusCode: 202,
