@@ -1,25 +1,64 @@
 <template>
   <div class="row justify-content-center">
     <div class="col-md-4 col-10 login">
-      <h1 class="h3 mb-3">Please sign in</h1>
+      <form @submit.prevent="">
+        <h1 class="h3 mb-3">Please sign in</h1>
+        <div class="form-floating">
+          <input v-model="username" type="text" class="form-control" id="floatingInput" placeholder="username" />
+          <label for="floatingInput">Username</label>
+        </div>
+        <div class="form-floating mt-3">
+          <input v-model="password" type="password" class="form-control" id="floatingPassword" placeholder="Password" />
+          <label for="floatingPassword">Password</label>
+        </div>
 
-      <div class="form-floating">
-        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" />
-        <label for="floatingInput">Email address</label>
-      </div>
-      <div class="form-floating mt-3">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" />
-        <label for="floatingPassword">Password</label>
-      </div>
-      <router-link to="/tables">
-        <button class="w-100 btn btn-lg btn-primary mt-4 mb-3" type="submit">Sign in</button>
-      </router-link>
-      <router-link to="/signup">
-        <button class="w-100 btn btn-lg btn-secondary mt-2 mb-3" type="submit">Sign up</button>
-      </router-link>
+        <!-- <router-link to="/tables"> -->
+        <button @click="sendCredentials()" class="w-100 btn btn-lg btn-primary mt-4 mb-3" type="submit">
+          Sign in
+        </button>
+        <!-- </router-link> -->
+        <router-link to="/signup">
+          <button class="w-100 btn btn-lg btn-secondary mt-2 mb-3" type="submit">Sign up</button>
+        </router-link>
+      </form>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      username: "",
+      password: "",
+      credentialUrl: "http://localhost:5000/api/login",
+      answer: "",
+    };
+  },
+  methods: {
+    async sendCredentials() {
+      const loginCredentials = {
+        username: this.username,
+        password: this.password,
+      };
+      try {
+        const response = await fetch(this.credentialUrl, {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(loginCredentials),
+        });
+
+        this.answer = await response.json();
+        console.log(this.answer);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  },
+};
+</script>
 
 <style scoped>
 html,

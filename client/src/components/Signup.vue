@@ -75,7 +75,7 @@
       </div>
 
       <div class="col-12">
-        <button @click="sendUserInfo" type="submit" class="btn-lg mt-2 w-50 btn-primary">Sign up</button>
+        <button @click="sendUserInfo()" type="submit" class="btn-lg mt-2 w-50 btn-primary">Sign up</button>
       </div>
     </form>
   </div>
@@ -127,6 +127,9 @@ export default {
         this.confirmModal(newUser).then(async (confirmResult) => {
           try {
             if (confirmResult.isConfirmed) {
+              if (this.response.status === 409) {
+                return this.userExistModal();
+              }
               if (this.response.status === 201) {
                 this.successModal().then((successResult) => {
                   if (successResult.isConfirmed) {
@@ -143,7 +146,7 @@ export default {
           }
         });
       } else {
-        this.errorModal();
+        this.fillModal();
       }
     },
     errorModal() {
@@ -155,6 +158,25 @@ export default {
         time: 1500,
       });
     },
+    userExistModal() {
+      return Swal.fire({
+        position: "center",
+        icon: "error",
+        title: `This username: "${this.userName}" is already being used.\n\n Please chose an other one.`,
+        allowOutsideClick: false,
+        time: 1500,
+      });
+    },
+    fillModal() {
+      return Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "Please fill the missing fields",
+        allowOutsideClick: false,
+        time: 1500,
+      });
+    },
+
     successModal() {
       return Swal.fire({
         position: "center",
