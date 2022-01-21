@@ -1,13 +1,5 @@
 const express = require("express");
-const {
-  connectDb,
-  getProvinces,
-  insertUser,
-  fetchDBData,
-  findUser,
-  validateUser,
-  verifyExistingUser,
-} = require("./connect.js");
+const { connectDb, getProvinces, insertUser, findUser, validateUser, verifyExistingUser } = require("./connect.js");
 const cors = require("cors");
 const app = express();
 const port = 5000;
@@ -63,6 +55,7 @@ app.post("/api/users", cors(), async (req, res) => {
     return res.status(409).json({ success: false, code: 409, data: "", msg: "User already exists" });
   } else {
     const response = await insertUser(user);
+    console.log(`Response: ${response.statusCode}`);
     const statusCode = Number(response.statusCode);
     if (statusCode !== 201) {
       return res.status(401).send("A connection error has occured please try again later");

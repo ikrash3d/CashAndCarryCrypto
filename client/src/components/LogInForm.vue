@@ -21,6 +21,13 @@
         </router-link>
       </form>
     </div>
+    <div class="row justify-content-center mt-5">
+      <b class="row justify-content-center">Pour vous connecter: </b>
+      <b class="row justify-content-center"> Username : admin; Password: admin </b>
+      <br />
+      <p class="row justify-content-center mt-5">Il reste certains éléments à parfaire.</p>
+      La majeure partie des fonctionalités sont fonctionnelles
+    </div>
   </div>
 </template>
 
@@ -55,6 +62,7 @@ export default {
         if (this.answer.statusCode === 401) {
           return this.wrongPasswordUsernameModal();
         }
+        // this.$store.auth = true;
         this.$router.push({ name: "Tables" });
       } catch (error) {
         console.log(error);

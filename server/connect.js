@@ -1,5 +1,6 @@
 const { MongoClient } = require("mongodb");
 const env = require("dotenv");
+const { encrypt, decrypt } = require("./encrypt.js");
 env.config();
 const uri = process.env.MONGODB_URI;
 
@@ -14,10 +15,12 @@ const connectDb = async () => {
 };
 
 const insertUser = async (user) => {
-  let response = { statusCode: "", data: "" };
+  let response = { statusCode: "", data: "", msg: "" };
   try {
     const client = await MongoClient.connect(uri);
     const database = client.db("CashAndCarryCrypto");
+    // const userPassword = encrypt(user.password);
+    // console.log(userPassword);
     const data = await database.collection("users").insertOne({
       username: user.username,
       password: user.password,
@@ -29,25 +32,9 @@ const insertUser = async (user) => {
     });
     response = { statusCode: "201", data: data, msg: "User was added the database" };
   } catch (error) {
-    response = { statusCode: "400", data: data, msg: "User was not added to the database" };
+    response = { statusCode: "401", data: "", msg: "User was not added to the database" };
   }
   return response;
-};
-
-const fetchDBData = async () => {
-  let response = { statusCode: "", data: "" };
-  try {
-    const client = await MongoClient.connect(uri);
-    const database = client.db("CashAndCarryCrypto");
-    const collection = await database.collection("users").find().toArray();
-    response = {
-      statusCode: 201,
-      data: collection,
-    };
-    return response;
-  } catch (error) {
-    console.log(error);
-  }
 };
 
 const getProvinces = async () => {
@@ -69,7 +56,6 @@ const getProvinces = async () => {
 };
 
 const findUser = async (username) => {
-  let response = { statusCode: "", data: "", msg: "" };
   try {
     const client = await MongoClient.connect(uri);
     const database = client.db("CashAndCarryCrypto");
@@ -122,4 +108,4 @@ const verifyExistingUser = async (username) => {
     console.log(error);
   }
 };
-module.exports = { connectDb, getProvinces, insertUser, fetchDBData, findUser, validateUser, verifyExistingUser };
+module.exports = { connectDb, getProvinces, insertUser, findUser, validateUser, verifyExistingUser };

@@ -13,6 +13,7 @@ const routes = [
     path: "/tables",
     name: "Tables",
     component: CryptoCalc,
+    meta: { requiredAuth: true },
   },
   {
     path: "/signup",
@@ -24,5 +25,13 @@ const router = createRouter({
   history: createWebHistory(),
   routes,
 });
+
+// router.beforeEach((to, from, next) => {
+//   if (!router.app.$store.state.auth) {
+//     next("/");
+//   } else {
+//     next("");
+//   }
+// });
 
 export default router;
