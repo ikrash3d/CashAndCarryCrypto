@@ -12,14 +12,14 @@
           <label for="floatingPassword">Password</label>
         </div>
         <router-link to="/tables">
-          <button @click="sendCredentials()" class="w-100 btn btn-lg btn-primary mt-4 mb-3" type="submit">
+          <button class="w-100 btn btn-lg btn-primary mt-4 mb-3" type="submit">
             Sign in
           </button>
         </router-link>
 
-        <router-link to="/signup">
+        <!-- <router-link to="/signup">
           <button class="w-100 btn btn-lg btn-secondary mt-2 mb-3" type="submit">Sign up</button>
-        </router-link>
+        </router-link> -->
       </form>
     </div>
     <div class="row justify-content-center mt-5">
