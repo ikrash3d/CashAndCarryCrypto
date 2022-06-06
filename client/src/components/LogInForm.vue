@@ -11,10 +11,11 @@
           <input v-model="password" type="password" class="form-control" id="floatingPassword" placeholder="Password" />
           <label for="floatingPassword">Password</label>
         </div>
-
-        <button @click="sendCredentials()" class="w-100 btn btn-lg btn-primary mt-4 mb-3" type="submit">
-          Sign in
-        </button>
+        <router-link to="/tables">
+          <button @click="sendCredentials()" class="w-100 btn btn-lg btn-primary mt-4 mb-3" type="submit">
+            Sign in
+          </button>
+        </router-link>
 
         <router-link to="/signup">
           <button class="w-100 btn btn-lg btn-secondary mt-2 mb-3" type="submit">Sign up</button>
@@ -23,10 +24,9 @@
     </div>
     <div class="row justify-content-center mt-5">
       <b class="row justify-content-center">Pour vous connecter: </b>
-      <b class="row justify-content-center"> Username : admin; Password: admin </b>
+
+      <b class="row justify-content-center mt-3"> Cliquez tout simplement sur Sign in</b>
       <br />
-      <p class="row justify-content-center mt-5">Il reste certains éléments à parfaire.</p>
-      La majeure partie des fonctionalités sont fonctionnelles
     </div>
   </div>
 </template>
@@ -58,7 +58,7 @@ export default {
         });
 
         this.answer = await response.json();
-        console.log(this.answer);
+
         if (this.answer.statusCode === 401) {
           return this.wrongPasswordUsernameModal();
         }

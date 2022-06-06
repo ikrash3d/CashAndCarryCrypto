@@ -13,7 +13,6 @@ const routes = [
     path: "/tables",
     name: "Tables",
     component: CryptoCalc,
-    meta: { requiredAuth: true },
   },
   {
     path: "/signup",

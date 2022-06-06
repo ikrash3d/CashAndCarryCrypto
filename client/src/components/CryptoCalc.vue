@@ -81,7 +81,7 @@ export default {
   },
   data() {
     return {
-      url: "https://dapi.binance.com//dapi/v1/ticker/bookTicker",
+      url: "https://dapi.binance.com/dapi/v1/ticker/bookTicker",
       max_object_first_future: {},
       max_object_second_future: {},
       showLog: false,
@@ -258,25 +258,6 @@ export default {
     };
   },
   methods: {
-    async sendInfo() {
-      let user = {
-        username: "Frank",
-        password: "admin123",
-      };
-      try {
-        const response = await fetch("http://localhost:5000/api/login", {
-          method: "POST",
-          headers: {
-            "Content-type": "application/json",
-          },
-          body: user,
-        });
-        const data = await response.json();
-        console.log(data);
-      } catch (e) {
-        console.log(e);
-      }
-    },
     toggleLog() {
       this.showLog = !this.showLog;
     },
@@ -286,11 +267,7 @@ export default {
     async dataGetter() {
       setInterval(async () => {
         this.resetData(this.futures_array);
-        const response = await fetch(this.url, {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const response = await fetch(this.url);
         const data = await response.json();
         for (let prop in data) {
           if (data[prop]["pair"] === "BTCUSD") {
